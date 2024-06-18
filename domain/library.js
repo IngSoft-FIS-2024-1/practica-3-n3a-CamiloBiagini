@@ -5,7 +5,7 @@ class Library {
   #name;
   #inventory = [];
   #totalWords;
-  #wordCount;
+  //#wordCount; Wordcount no esta mencionado en ningun lado, a charlar en el siguiente sprint planning
 
   constructor(name) {
     this.setName(name);
@@ -26,8 +26,8 @@ class Library {
     return this.#name;
   }
 
-  addBook(title, author, pages) {
-    const newBook = new Book(title, author, pages);
+  addBook(title, author, pages, words) {
+    const newBook = new Book(title, author, pages, words);
     this.#inventory.push(newBook);
   }
 
@@ -40,7 +40,12 @@ class Library {
   }
 
   totalWords() {
-    // TODO
+    var libros = this.getInventory();
+    var totalPalabras = 0;
+    libros.forEach(function (libro){
+      totalPalabras += libro.getWords();
+    });
+    return totalPalabras;
   }
 }
 
